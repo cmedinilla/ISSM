@@ -1,0 +1,19 @@
+{
+  "name": "mpgs-issm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "fs": "0.0.1-security",
+    "mastercard-oauth1-signer": "^1.1.5",
+    "node-forge": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
