@@ -1,0 +1,11 @@
+### certificates ###
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.p12
+
+# Dependency directories
+node_modules/
+jspm_packages/

@@ -2,12 +2,12 @@ const forge = require('node-forge');
 const oauth = require('mastercard-oauth1-signer');
 const fs = require("fs");
 const axios = require("axios");
-const consumerKey = '';
+const consumerKey = 'NCHpxaZdvybvFDjlVWZBlx3LpBqNyRhBm1eFihGV9359b9c2!4e925bb4de3b40fe8d3bc74255a748cf0000000000000000';
 
 
 const p12Content = fs.readFileSync('certificate/mpgs_sandbox_key-sandbox.p12', 'binary');
 const p12Asn1 = forge.asn1.fromDer(p12Content, false);
-const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, '');
+const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, 'sellMore!');
 const keyObj = p12.getBags({
     friendlyName: 'mpgs_sandbox_key',
     bagType: forge.pki.oids.pkcs8ShroudedKeyBag
@@ -17,11 +17,12 @@ const signingKey = forge.pki.privateKeyToPem(keyObj.key);
 const headers = authorizationHeader => {
   return {
     "Authorization": authorizationHeader,
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Accept-version": "v1"
   }
 }
 
-const uri = "https://sandbox.api.mastercard.com";
+const uri = "https://sandbox.api.mastercard.com/merchantenrollments/merchants";
 const method = "POST";
 const payload = {
   "merchantData": [
@@ -32,8 +33,7 @@ const payload = {
       "acquirerName": "Test Acquirer",
       "merchantID": "123",
       "merchantName": "Test Merchant",
-      "identityCheckExpress": "Y",
-      "deleteReason": "Data Entry Error"
+      "identityCheckExpress": "Y"
     }
   ],
   "processorName": "MPGS",
